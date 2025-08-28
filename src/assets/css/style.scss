@@ -5,9 +5,16 @@
 @import '_variable';
 @import '_mixin';
 
+@mixin zoom_icon_pc {
+	background-image: url('#{$bg-url}/search_zoom.svg');
+	background-repeat: no-repeat;
+	background-position: right 24px center;
+}
+
 .search-wrap {margin:50px;
 	$border-width: 2px;
 	$border-radius: 29px;
+	$search-padding: 24px;
 
 	position: relative;
 	width: 420px;
@@ -15,6 +22,7 @@
 	background: linear-gradient(90deg, $everyday-primary 10%, $reward-primary 90%);
 	border-radius: $border-radius;
 	box-shadow: 0 5px 15px rgba(#000, .07);
+	// 배경 적용
 	&:before {
 		position: absolute;
 		left: $border-width;
@@ -32,34 +40,48 @@
 	.search-box {
 		position: relative;
 		$height: 54px;
-		$zoom: 65px;
+		$zoom: 60px;
 
+		&:before {
+			opacity: .5;
+			position: absolute; right: 0; top: 0;
+			width: 100%; height: 100%;
+			@include zoom_icon_pc;
+			border-radius: calc(#{$border-radius} - #{$border-width});
+			content: "";
+		}
 		.search-input {
+			position: relative; z-index: 1;
 			width: 100%; height: $height;
-			padding: 0 0 0 24px;
+			padding: 0 calc(#{$zoom}) 0 #{$search-padding};
 			font-size: 18px;
 			font-weight: 600;
 			color: $text-accent;
 			border-radius: 100px;
+			background-color: transparent;
 			border: none;
 			outline: none;
 			@include placeholder($font-weight: 400, $color: #{$opacity-35});
+			&:focus,
+			&:not(:placeholder-shown) {
+				padding: 0 calc(#{$zoom} + (#{$height} - 10px) + 16px) 0 #{$search-padding};
+			}
 		}
-		.search-clear { background-color: #eee;
-			//display: none;
-			position: absolute; right: $zoom; top: 0;
-			width: $height; height: $height;
+		.search-clear {
+			display: none;
+			position: absolute; right: $zoom; top: 0; z-index: 1;
+			width: calc(#{$height} - 10px); height: $height;
 			i {
 				position: absolute; left: 50%; top: 50%;
 				transform: translate(-50%, -50%);
-				width: 2px; height: 20px;
+				width: 3px; height: 24px;
 				font-size: 0;
 				text-indent: -9999px;
 				&:before,
 				&:after {
 					position: absolute; left: 0; top: 0;
 					width: 100%; height: 100%;
-					background-color: $opacity-80;
+					background-color: $text-blurry;
 					content: "";
 				}
 				&:before {transform: rotate(45deg);}
@@ -67,22 +89,33 @@
 			}
 		}
 		.search-button {
-			position: absolute; right:0; top:0;
+			opacity: 0; visibility: hidden;
+			position: absolute; right:0; top:0; z-index: 2;
 			width: $zoom; height: $height;
 			font-size: 0;
 			text-indent: -9999px;
 			border-radius: 0 $border-radius $border-radius 0;
-			background-image: url('#{$bg-url}/search_zoom.svg');
-			background-repeat: no-repeat;
+			@include zoom_icon_pc;
 			background-position: right 24px center;
+		}
+		.search-input:not(:placeholder-shown) ~ .search-button {
+			opacity: 1; visibility: visible;
 		}
 	}
 
-	// .search-list를 숨기고, .search-box 내부 요소에 focus 발생 시 .search-list 보여지게
+	/*
+	 .search-list를 숨기고,
+	 .search-box 내부 요소에 focus 발생 시
+	 .search-list 보여지게
+	*/
 	.search-list {
 		opacity: 0;
 		visibility: hidden;
 		position: absolute; left: -9999px; top: -9999px;
+
+		margin: 0 $search-padding ($search-padding + 2px);
+		padding-top: 25px;
+		border-top: 2px solid $opacity-20;
 	}
 	&:has(input[type="search"]:focus) .search-list,
 	&:has(.search-clear:focus) .search-list,
