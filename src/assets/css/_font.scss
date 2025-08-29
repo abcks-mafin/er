@@ -8,3 +8,156 @@ $font: "Pretendard Variable", Pretendard, -apple-system, system-ui, Roboto, "App
 @mixin font-icon2 {font-family:"Font Awesome 5 Brands", sans-serif;}
 @mixin font-code {font-family:SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
 
+
+
+// font 생성 -----------------------------------------------------------------------------------------------------------
+
+// Font weights
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+$font-black: 900;
+
+// Line-heights by category
+$lh-headline: 120%;
+$lh-title: 140%;
+$lh-body: 160%;
+$lh-caption: 120%;
+
+// Mixin
+@mixin text-style($category, $size, $weight) {
+	// line-height 매핑
+	@if $category == headline {
+		line-height: $lh-headline;
+	} @else if $category == title {
+		line-height: $lh-title;
+	} @else if $category == body {
+		line-height: $lh-body;
+	} @else if $category == caption {
+		line-height: $lh-caption;
+	}
+
+	// font-size 매핑
+	@if $category == headline and $size == large { font-size: 34px; }
+	@if $category == headline and $size == base { font-size: 30px; }
+	@if $category == title and $size == large { font-size: 24px; }
+	@if $category == title and $size == base { font-size: 20px; }
+	@if $category == title and $size == small { font-size: 18px; }
+	@if $category == body and $size == large { font-size: 16px; }
+	@if $category == body and $size == base { font-size: 14px; }
+	@if $category == body and $size == small { font-size: 13px; }
+	@if $category == caption and $size == base { font-size: 12px; }
+
+	// font-weight 매핑
+	@if $weight == regular { font-weight: $font-regular; }
+	@if $weight == medium { font-weight: $font-medium; }
+	@if $weight == semibold { font-weight: $font-semibold; }
+	@if $weight == bold { font-weight: $font-bold; }
+	@if $weight == black { font-weight: $font-black; }
+}
+
+// 카테고리 + 사이즈 맵
+$text-sizes: (
+		headline: (large, base),
+		title: (large, base, small),
+		body: (large, base, small),
+		caption: (base)
+);
+
+// Font weights 맵
+$weights: (
+		"regular": 400,
+		"medium": 500,
+		"semibold": 600,
+		"bold": 700,
+		"black": 900
+);
+
+// font class 생성
+@each $category, $sizes in $text-sizes {
+	@each $size in $sizes {
+		@each $weight-name, $weight-value in $weights {
+			.#{$category}-#{$size}-#{$weight-name} {
+				@include text-style($category, $size, $weight-name);
+				font-weight: $weight-value; // 숫자 바로 매핑
+			}
+		}
+	}
+}
+
+
+
+// 결과물 class  -------------------------------------------------------------------------------------------------------
+/*
+// Headline
+.headline-large-regular
+.headline-large-medium
+.headline-large-semibold
+.headline-large-bold
+.headline-large-black
+
+.headline-base-regular
+.headline-base-medium
+.headline-base-semibold
+.headline-base-bold
+.headline-base-black
+
+
+// Title
+.title-large-regular
+.title-large-medium
+.title-large-semibold
+.title-large-bold
+.title-large-black
+
+.title-base-regular
+.title-base-medium
+.title-base-semibold
+.title-base-bold
+.title-base-black
+
+.title-small-regular
+.title-small-medium
+.title-small-semibold
+.title-small-bold
+.title-small-black
+
+
+// Body
+.body-large-regular
+.body-large-medium
+.body-large-semibold
+.body-large-bold
+.body-large-black
+
+.body-base-regular
+.body-base-medium
+.body-base-semibold
+.body-base-bold
+.body-base-black
+
+.body-small-regular
+.body-small-medium
+.body-small-semibold
+.body-small-bold
+.body-small-black
+
+
+// Caption
+.caption-base-regular
+.caption-base-medium
+.caption-base-semibold
+.caption-base-bold
+.caption-base-black
+*/
+
+
+
+// 기본 폰트 지정 ------------------------------------------------------------------------------------------------------
+body {
+	@include text-style(body, base, regular);
+}
+textarea, select, input, button {
+	@include text-style(body, base, regular);
+}

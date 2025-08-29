@@ -21,42 +21,43 @@
 			</button>
 			<button type="button" class="search-button">검색하기</button>
 		</div>
-		<div class="search-list">
-			<div aria-labelledby="recent-search-heading">
+		<div class="search-list-box">
+			<div class="list-box" aria-labelledby="recent-search-heading">
 				<strong id="recent-search-heading">최근 검색어</strong>
 				<ul class="recent-search-words-list">
 					<li class="recent-search-words-list-item">
-						<span>올리브영</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">올리브영</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>문화상품권</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">문화상품권</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>mac</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">mac</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>로션</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">로션</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>스킨</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">스킨</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>문화상품권</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">문화상품권</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>타이어 후드</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">타이어 후드</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
 					<li class="recent-search-words-list-item">
-						<span>직관 티켓</span>
-						<button type="button">검색어 삭제</button>
+						<button type="button" class="recent-search-word">직관 티켓</button>
+						<button type="button" class="recent-search-word-delete x-button"><i>검색어 삭제</i></button>
 					</li>
+
 					<button type="button">모두 지우기</button>
 
 					{#-<p class="empty">
@@ -64,20 +65,37 @@
 					</p>#}
 				</ul>
 			</div>
-			<div aria-labelledby="popular-search-heading">
+			<div class="list-box" aria-labelledby="popular-search-heading">
 				<strong id="popular-search-heading">인기 검색어</strong>
 				<ol class="popular-search-word-list">
-					<li class="popular-search-word-list-item">문화상품권</li>
-					<li class="popular-search-word-list-item">타이어 후드</li>
-					<li class="popular-search-word-list-item">스킨</li>
-					<li class="popular-search-word-list-item">올리브영</li>
-					<li class="popular-search-word-list-item">로션</li>
-					<li class="popular-search-word-list-item">직관 티켓</li>
-					<li class="popular-search-word-list-item">올리브영</li>
-					<li class="popular-search-word-list-item">mac</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">문화상품권</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">타이어 후드</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">스킨</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">올리브영</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">로션</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">직관 티켓</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">올리브영</button>
+					</li>
+					<li class="popular-search-word-list-item">
+						<button type="button" class="popular-search-word">mac</button>
+					</li>
 				</ol>
 			</div>
 		</div>
 	</div>
+
 
 {%- endblock %}

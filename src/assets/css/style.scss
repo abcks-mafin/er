@@ -37,6 +37,7 @@
 		position: relative;
 	}
 
+	// 검색 input / 검색어 삭제 버튼 / 검색하기 버튼
 	.search-box {
 		position: relative;
 		$height: 54px;
@@ -108,20 +109,93 @@
 	 .search-box 내부 요소에 focus 발생 시
 	 .search-list 보여지게
 	*/
-	.search-list {
-		opacity: 0;
-		visibility: hidden;
-		position: absolute; left: -9999px; top: -9999px;
+	.search-list-box {
+		//opacity: 0;
+		//visibility: hidden;
+		//position: absolute; left: -9999px; top: -9999px;
 
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
 		margin: 0 $search-padding ($search-padding + 2px);
 		padding-top: 25px;
 		border-top: 2px solid $opacity-20;
 	}
-	&:has(input[type="search"]:focus) .search-list,
-	&:has(.search-clear:focus) .search-list,
-	&:has(.search-button:focus) .search-list {
+	&:has(input[type="search"]:focus) .search-list-box,
+	&:has(.search-clear:focus) .search-list-box,
+	&:has(.search-button:focus) .search-list-box {
 		opacity: 1;
 		visibility: visible;
 		position: relative; left: 0; top: 0;
 	}
+
+	.list-box {
+		strong {
+			@include text-style(body, large, semibold);
+		}
+	}
 }
+
+.recent-search-words-list,
+.popular-search-word-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 5px;
+	margin-top: 10px;
+}
+
+.recent-search-words-list-item {
+	position: relative;
+}
+
+.recent-search-word,
+.popular-search-word {
+	display: inline-flex;
+	align-items: center;
+	height: 34px;
+	padding: 0 15px;
+	border-radius: 50px;
+}
+
+.recent-search-word {
+	padding-right: 33px;
+	border: 1px solid $opacity-10;
+	&:hover {
+		border-color: $everyday-primary;
+	}
+}
+.recent-search-word-delete {
+	position: absolute; right: 10px; top: 50%;
+	transform: translateY(-50%);
+	width:20px; height: 20px;
+	border-radius: 100%;
+
+	i {
+		position: absolute; left: 50%; top: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 0; text-indent: -9999px;
+		width: 1px; height: 13px;
+
+		&:before,
+		&:after {
+			position: absolute; left: 0; top: 0;
+			width: 100%; height: 100%;
+			background-color: $text-blurry;
+			content: "";
+		}
+		&:before {transform: rotate(45deg);}
+		&:after {transform: rotate(-45deg);}
+	}
+
+	&:hover i {
+		&:before,
+		&:after {
+			background-color: $text-accent;
+		}
+	}
+}
+
+.popular-search-word {
+	background-color: $opacity-05;
+}
+

@@ -7,6 +7,7 @@ fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, 
 footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
 {margin:0; padding:0; border:0; vertical-align:top; box-sizing:border-box; word-break:keep-all; @include font-kr;}
 *:before, *:after {box-sizing:border-box;}
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
 body {line-height:1;}
@@ -19,12 +20,10 @@ i, em ,address {font-style:normal;}
 img {max-width:100%; height:auto; border:0; vertical-align:top;}
 button {margin:0; padding:0; border:0; background:none; cursor:pointer; @include font-kr;}
 textarea {vertical-align:top;}
+
 /* 아이폰 가로모드 텍스트 크기 조정 */
 * {-webkit-text-size-adjust:none}
-/* 아이폰 라운드, 안쪽 그림자 제거 */
-.device {
-	//input, textarea {-webkit-border-radius:0; -webkit-appearance:none;}
-}
+
 /* common */
 .ell {overflow:hidden; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis;}
 textarea, select,
