@@ -160,6 +160,7 @@
 .recent-search-word {
 	padding-right: 33px;
 	border: 1px solid $opacity-10;
+	transition: border-color .15s;
 	&:hover {
 		border-color: $everyday-primary;
 	}
@@ -181,6 +182,7 @@
 			position: absolute; left: 0; top: 0;
 			width: 100%; height: 100%;
 			background-color: $text-blurry;
+			transition: background-color .15s;
 			content: "";
 		}
 		&:before {transform: rotate(45deg);}
@@ -193,6 +195,9 @@
 			background-color: $text-accent;
 		}
 	}
+}
+.recent-search-words-list-item:has(.recent-search-word-delete:hover) .recent-search-word {
+	border-color: rgba($everyday-primary, .6);
 }
 
 .popular-search-word {
