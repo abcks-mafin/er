@@ -5,13 +5,14 @@
 @import '_variable';
 @import '_mixin';
 
+
 @mixin zoom_icon_pc {
 	background-image: url('#{$bg-url}/search_zoom.svg');
 	background-repeat: no-repeat;
 	background-position: right 24px center;
 }
 
-.search-wrap {margin:50px;
+.search-wrap { margin:50px;
 	$border-width: 2px;
 	$border-radius: 29px;
 	$search-padding: 24px;
@@ -38,7 +39,7 @@
 	}
 
 	// 검색 input / 검색어 삭제 버튼 / 검색하기 버튼
-	.search-box {
+	.search-input-box {
 		position: relative;
 		$height: 54px;
 		$zoom: 60px;
@@ -104,15 +105,11 @@
 		}
 	}
 
-	/*
-	 .search-list를 숨기고,
-	 .search-box 내부 요소에 focus 발생 시
-	 .search-list 보여지게
-	*/
+	// 최근 검색어 / 인기 검색어
 	.search-list-box {
-		//opacity: 0;
-		//visibility: hidden;
-		//position: absolute; left: -9999px; top: -9999px;
+		opacity: 0;
+		visibility: hidden;
+		position: absolute; left: -9999px; top: -9999px;
 
 		display: flex;
 		flex-direction: column;
@@ -120,22 +117,35 @@
 		margin: 0 $search-padding ($search-padding + 2px);
 		padding-top: 25px;
 		border-top: 2px solid $opacity-20;
-	}
-	&:has(input[type="search"]:focus) .search-list-box,
-	&:has(.search-clear:focus) .search-list-box,
-	&:has(.search-button:focus) .search-list-box {
-		opacity: 1;
-		visibility: visible;
-		position: relative; left: 0; top: 0;
-	}
 
-	.list-box {
-		strong {
-			@include text-style(body, large, semibold);
+		.list-box {
+			position: relative;
+
+			.list-box-title {
+				display: block;
+				@include text-style(body, large, semibold);
+			}
+			.clear-all-list {
+				position: absolute; right: 0; top: 0;
+				line-height: 160%;
+				@include text-style(body, base, regular, 185%);
+				text-decoration: underline;
+				color: $text-lighten;
+				&:hover {
+					color: $text-accent;
+				}
+			}
 		}
 	}
+	&.search-input-focus .search-list-box {
+			opacity: 1;
+			visibility: visible;
+			position: relative; left: 0; top: 0;
+	}
+
 }
 
+// 최근 검색어 목록 / 인기 검색어 목록
 .recent-search-words-list,
 .popular-search-word-list {
 	display: flex;
@@ -144,10 +154,12 @@
 	margin-top: 10px;
 }
 
+// 최근 검색어 목록 아이템
 .recent-search-words-list-item {
 	position: relative;
 }
 
+// 최근 검색어 / 인기 검색어
 .recent-search-word,
 .popular-search-word {
 	display: inline-flex;
@@ -155,6 +167,8 @@
 	height: 34px;
 	padding: 0 15px;
 	border-radius: 50px;
+	@include text-style(body, base, medium);
+	color: $text-accent;
 }
 .recent-search-word {
 	padding-right: 33px;
@@ -192,15 +206,29 @@
 		&:before,
 		&:after {
 			background-color: $text-accent;
+			box-shadow:0 0 1px 0 $text-blurry;
 		}
 	}
 }
 .recent-search-words-list-item:has(.recent-search-word-delete:hover) .recent-search-word {
 	border-color: rgba($everyday-primary, .6);
 }
-
+.empty-search-words-list {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 56px;
+	@include text-style(body, base, regular);
+	color: $text-lighten;
+	background-color: $opacity-03;
+	border-radius: 10px;
+}
 .popular-search-word {
 	background-color: $opacity-05;
+	transition: background-color .15s;
+	&:hover {
+		background-color: $opacity-10;
+	}
 }
 
 
