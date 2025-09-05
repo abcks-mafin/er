@@ -1,8 +1,3 @@
-{%- macro include(fileName) -%}
-	{%- include fileName ignore missing -%}
-{%- endmacro -%}
-{#- // 들여쓰기(Tab Indent) 조정을 위한 macro -#}
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,17 +27,14 @@
 </head>
 <body>
 <div class="wrap">
-	{{ include( "_templates/_include/_header.njk" ) | tabIndent(1) }}
+	
 
 	<main class="container">
-		{% filter tabIndent(1) %}
-			{% block content %}
-			{%- endblock %}
-		{%- endfilter %}
+		<h1>history 페이지 입니다.</h1>
 	</main>
 	<!-- // content -->
 
-	{{ include( "_templates/_include/_footer.njk" ) | tabIndent(1) }}
+	
 </div>
 <!-- //wrap -->
 
